@@ -12,8 +12,8 @@ const DB = process.env.DATABASE.replace(
 
 mongoose
   .connect(
-    // DB,
-    process.env.DATABASE_LOCAL,
+    DB,
+    // process.env.DATABASE_LOCAL,
     {
       useUnifiedTopology: true,
     }
