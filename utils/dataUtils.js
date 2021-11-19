@@ -65,9 +65,13 @@ const exportarA = async (file) => {
         },
       },
     ]);
-    fs.writeFileSync(`./dev-data/${file}`, JSON.stringify(todosLosAlu));
-    fs.writeFileSync(`./dev-data/${file}`, JSON.stringify(todosLosInstr));
-    fs.writeFileSync(`./dev-data/${file}`, JSON.stringify(todosLosCur));
+
+    let institutoJson = {
+      alumnos: todosLosAlu,
+      cursos: todosLosCur,
+      instructores: todosLosInstr,
+    };
+    fs.writeFileSync(`./dev-data/${file}`, JSON.stringify(institutoJson));
   } catch (err) {
     console.error(err.message);
   }
@@ -76,8 +80,8 @@ const exportarA = async (file) => {
 
 mongoose
   .connect(
-    // DB,
-    process.env.DATABASE_LOCAL,
+    DB,
+    // process.env.DATABASE_LOCAL,
     {
       useUnifiedTopology: true,
     }
