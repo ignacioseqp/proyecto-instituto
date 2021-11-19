@@ -1,0 +1,17 @@
+let alumno = {
+  id: 4,
+  apellidos: 'Lucero',
+  nombres: 'Lautaro',
+  documentoTipo: 'DNI',
+  documentoNro: '43657890',
+  domicilio: 'Jamaica 541',
+  telefono: '2281998877',
+  fecNac: '1635132111789',
+};
+
+let instructor = {
+  id: 104,
+  apellidos: 'Barrionuevo',
+  nombres: 'Miguel',
+  telefono: '2281098765',
+};

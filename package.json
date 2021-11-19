@@ -1,0 +1,17 @@
+{
+  "name": "p-instituto",
+  "version": "1.0.0",
+  "description": "proyecto instituto",
+  "main": "script.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Ignacio",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12",
+    "validator": "^13.7.0"
+  }
+}

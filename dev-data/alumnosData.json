@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "apellidos": "Pérez",
+    "nombres": "Ratón",
+    "documentoTipo": "DNI",
+    "documentoNro": "23456789",
+    "email": "rperes@example.com",
+    "domicilio": "Moreno 1234",
+    "telefono": "2281456789"
+  },
+  {
+    "id": 2,
+    "apellidos": "Rodriguez",
+    "nombres": "Jose",
+    "documentoTipo": "DNI",
+    "documentoNro": "24981751",
+    "email": "jrodriguez@example.com",
+    "domicilio": "Chubut 541",
+    "telefono": "2281224411"
+  },
+  {
+    "id": 3,
+    "apellidos": "Martinez",
+    "nombres": "Luciano",
+    "documentoTipo": "DNI",
+    "documentoNro": "24981756",
+    "email": "lmartinez@example.com",
+    "domicilio": "Formosa 541",
+    "telefono": "2281998817"
+  },
+  {
+    "id": 4,
+    "apellidos": "Lucero",
+    "nombres": "Lautaro",
+    "documentoTipo": "DNI",
+    "documentoNro": "43657890",
+    "email": "llucero@example.com",
+    "domicilio": "Jamaica 541",
+    "telefono": "2281998877"
+  },
+  {
+    "id": 5,
+    "apellidos": "Fernandez",
+    "nombres": "Pablo",
+    "documentoTipo": "DNI",
+    "documentoNro": "42532123",
+    "email": "pablofdez@example.com",
+    "domicilio": "Luro 1542",
+    "telefono": "2281332546"
+  },
+  {
+    "id": 6,
+    "apellidos": "Martinez",
+    "nombres": "Rodrigo",
+    "documentoTipo": "CI",
+    "documentoNro": "27241525",
+    "email": "rmartinez@yahoo.com",
+    "domicilio": "Belgrano 912",
+    "telefono": "2281775632"
+  },
+  {
+    "id": 7,
+    "apellidos": "Pane",
+    "nombres": "Marta",
+    "documentoTipo": "CI",
+    "documentoNro": "20141233",
+    "email": "mpane@example.com",
+    "domicilio": "Pinamar 123",
+    "telefono": "2281310901"
+  },
+  {
+    "id": 8,
+    "apellidos": "Larroca",
+    "nombres": "Julieta",
+    "documentoTipo": "DNI",
+    "documentoNro": "39214323",
+    "email": "jlarroca@example.com",
+    "domicilio": "Burgos 902",
+    "telefono": "2281782395"
+  },
+  {
+    "id": 9,
+    "apellidos": "Illescas",
+    "nombres": "Mariana",
+    "documentoTipo": "DNI",
+    "documentoNro": "34219875",
+    "email": "millescas@example.com",
+    "domicilio": "España 123",
+    "telefono": "2281235671"
+  }
+]
