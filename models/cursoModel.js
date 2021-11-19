@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const cursoSchema = new mongoose.Schema(
   {
+    ide: {
+      type: Number,
+      required: true,
+      unique: true,
+    },
     nombre: {
       type: String,
       required: [true, 'El nombre del curso es obligatorio!'],

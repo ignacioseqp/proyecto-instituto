@@ -16,7 +16,7 @@ exports.mostrarTodo = async (req, res) => {
     const aluHtml = queryAlu
       .map((alu) => {
         return `<tr>
-      <td>${alu.id}</td>
+      <td>${alu.ide}</td>
       <td>${alu.apellidos}</td>
       <td>${alu.nombres}</td>
       <td>${alu.documentoTipo}</td>
@@ -33,7 +33,7 @@ exports.mostrarTodo = async (req, res) => {
     const cursoHtml = queryCur
       .map((curso) => {
         return `<tr>
-        <td>${curso.id}</td>
+        <td>${curso.ide}</td>
         <td>${curso.nombre}</td>
         <td>${curso.estado}</td>
         <td>${curso.fechaDesde}</td>
@@ -48,7 +48,7 @@ exports.mostrarTodo = async (req, res) => {
     const instrHtml = queryIns
       .map((instr) => {
         return `<tr>
-    <td>${instr.id}</td>
+    <td>${instr.ide}</td>
     <td>${instr.apellidos}</td>
     <td>${instr.nombres}</td>
     <td>${instr.profTitulo}</td>

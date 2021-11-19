@@ -1,99 +1,119 @@
 {
   "alumnos": [
     {
-      "id": 1,
+      "ide": 1,
       "apellidos": "Pérez",
       "nombres": "Ratón",
       "documentoTipo": "DNI",
-      "documentoNro": "23456789",
-      "email": "rperes@example.com",
+      "documentoNro": 23456789,
+      "email": "rperez@example.com",
       "domicilio": "Moreno 1234",
-      "telefono": "2281456789"
+      "telefono": 2281456789
     },
     {
-      "id": 2,
+      "_id": "6195bff12a6def7521884430",
+      "ide": 2,
       "apellidos": "Rodriguez",
       "nombres": "Jose",
       "documentoTipo": "DNI",
-      "documentoNro": "24981751",
+      "documentoNro": 24981751,
       "email": "jrodriguez@example.com",
       "domicilio": "Chubut 541",
-      "telefono": "2281224411"
+      "telefono": 2281224411
     },
     {
-      "id": 3,
+      "_id": "6195bff12a6def7521884431",
+      "ide": 3,
       "apellidos": "Martinez",
       "nombres": "Luciano",
       "documentoTipo": "DNI",
-      "documentoNro": "24981756",
+      "documentoNro": 24981756,
       "email": "lmartinez@example.com",
       "domicilio": "Formosa 541",
-      "telefono": "2281998877"
+      "telefono": 2281998877
     },
     {
-      "id": 4,
+      "_id": "6195bff12a6def7521884432",
+      "ide": 4,
       "apellidos": "Lucero",
       "nombres": "Lautaro",
       "documentoTipo": "DNI",
-      "documentoNro": "43657890",
+      "documentoNro": 43657890,
       "email": "llucero@example.com",
       "domicilio": "Jamaica 541",
-      "telefono": "2281998872"
+      "telefono": 2281998872
     },
     {
-      "id": 5,
+      "_id": "6195bff12a6def7521884433",
+      "ide": 5,
       "apellidos": "Fernandez",
       "nombres": "Pablo",
       "documentoTipo": "DNI",
-      "documentoNro": "42532123",
+      "documentoNro": 42532123,
       "email": "pablofdez@example.com",
       "domicilio": "Luro 1542",
-      "telefono": "2281332546"
+      "telefono": 2281332546
     },
     {
-      "id": 6,
+      "_id": "6195bff12a6def7521884434",
+      "ide": 6,
       "apellidos": "Martinez",
       "nombres": "Rodrigo",
       "documentoTipo": "CI",
-      "documentoNro": "27241525",
+      "documentoNro": 27241525,
       "email": "rmartinez@yahoo.com",
       "domicilio": "Belgrano 912",
-      "telefono": "2281775632"
+      "telefono": 2281775632
     },
     {
-      "id": 7,
+      "_id": "6195bff12a6def7521884435",
+      "ide": 7,
       "apellidos": "Pane",
       "nombres": "Marta",
       "documentoTipo": "CI",
-      "documentoNro": "20141233",
+      "documentoNro": 20141233,
       "email": "mpane@example.com",
       "domicilio": "Pinamar 123",
-      "telefono": "2281310901"
+      "telefono": 2281310901
     },
     {
-      "id": 8,
+      "_id": "6195bff12a6def7521884436",
+      "ide": 8,
       "apellidos": "Larroca",
       "nombres": "Julieta",
       "documentoTipo": "DNI",
-      "documentoNro": "39214323",
+      "documentoNro": 39214323,
       "email": "jlarroca@example.com",
       "domicilio": "Burgos 902",
-      "telefono": "2281782395"
+      "telefono": 2281782395
     },
     {
-      "id": 9,
+      "_id": "6195bff12a6def7521884437",
+      "ide": 9,
       "apellidos": "Illescas",
       "nombres": "Mariana",
       "documentoTipo": "DNI",
-      "documentoNro": "34219875",
+      "documentoNro": 34219875,
       "email": "millescas@example.com",
       "domicilio": "España 123",
-      "telefono": "2281235671"
+      "telefono": 2281235671
+    },
+    {
+      "_id": "6196ec5b19620048b9befe89",
+      "ide": 10,
+      "apellidos": "Imbert",
+      "nombres": "Noumah",
+      "documentoTipo": "DNI",
+      "documentoNro": 41358984,
+      "email": "nimbert@example.com",
+      "domicilio": "Granada 111",
+      "telefono": 2281000000
     }
   ],
   "cursos": [
     {
-      "id": 1000,
+      "_id": "6195bff12a6def7521884443",
+      "ide": 1,
       "nombre": "Programador Web",
       "estado": false,
       "fechaDesde": "2021-03-03",
@@ -109,7 +129,8 @@
       "alumnos": [10001, 10002, 10003]
     },
     {
-      "id": 1001,
+      "_id": "6195bff12a6def7521884444",
+      "ide": 2,
       "nombre": "Cocina",
       "estado": false,
       "fechaDesde": "2021-11-04",
@@ -125,7 +146,8 @@
       "alumnos": []
     },
     {
-      "id": 1002,
+      "_id": "6195bff12a6def7521884445",
+      "ide": 3,
       "nombre": "Carpinteria",
       "estado": false,
       "fechaDesde": "2022-03-05",
@@ -141,7 +163,8 @@
       "alumnos": []
     },
     {
-      "id": 1003,
+      "_id": "6195bff12a6def7521884446",
+      "ide": 4,
       "nombre": "Hoteleria",
       "estado": false,
       "fechaDesde": "2021-11-27",
@@ -157,7 +180,8 @@
       "alumnos": []
     },
     {
-      "id": 1004,
+      "_id": "6195bff12a6def7521884447",
+      "ide": 5,
       "nombre": "Edición",
       "estado": false,
       "fechaDesde": "2021-11-05",
@@ -171,44 +195,65 @@
       ],
       "instructores": [],
       "alumnos": []
+    },
+    {
+      "_id": "6196ef3b021bf817bf42d703",
+      "ide": 6,
+      "nombre": "Albañileria",
+      "estado": false,
+      "fechaDesde": "2022-04-03",
+      "fechaHasta": "2022-10-13",
+      "horarios": [
+        { "dia": "Lunes", "desdeHora": "10:30", "hastaHora": "12:30" },
+        { "dia": "Martes", "desdeHora": "", "hastaHora": "" },
+        { "dia": "Miércoles", "desdeHora": "15:00", "hastaHora": "17:00" },
+        { "dia": "Jueves", "desdeHora": "", "hastaHora": "" },
+        { "dia": "Viernes", "desdeHora": "", "hastaHora": "" }
+      ],
+      "instructores": [],
+      "alumnos": []
     }
   ],
   "instructores": [
     {
-      "id": 101,
+      "_id": "6195bff12a6def752188444f",
+      "ide": 1,
       "apellidos": "Altamiranda",
       "nombres": "Claudio",
       "profTitulo": "Ingeniero en sistemas",
       "email": "claudio@example.com",
       "domicilio": "Ejemplo 123",
-      "telefono": "2281987654"
+      "telefono": 2281987654
     },
     {
-      "id": 102,
+      "_id": "6195bff12a6def7521884450",
+      "ide": 2,
       "apellidos": "Perez",
       "nombres": "Juan Pablo",
       "profTitulo": "Cocinero",
       "email": "jperez@ejemplo.com",
       "domicilio": "La Paz 192",
-      "telefono": "2281992233"
+      "telefono": 2281992233
     },
     {
-      "id": 103,
+      "_id": "6195bff12a6def7521884451",
+      "ide": 3,
       "apellidos": "Sanchez",
       "nombres": "Ricardo",
       "profTitulo": "Maestro Carpintero",
       "email": "rsanchez@example.com",
       "domicilio": "Portugal 1242",
-      "telefono": "2281773344"
+      "telefono": 2281773344
     },
     {
-      "id": 104,
+      "_id": "6195bff12a6def7521884452",
+      "ide": 4,
       "apellidos": "Rodriguez",
       "nombres": "Julia",
       "profTitulo": "Licenciada en Marketing",
       "email": "jrodriguez@example.com",
       "domicilio": "Alverado 1235",
-      "telefono": "2281779213"
+      "telefono": 2281779213
     }
   ]
 }

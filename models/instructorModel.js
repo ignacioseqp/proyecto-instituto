@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const instructorSchema = new mongoose.Schema(
   {
+    ide: {
+      type: Number,
+      required: true,
+      unique: true,
+    },
     apellidos: {
       type: String,
       required: [true, 'El apellido del alumno es obligatorio!'], //default: "false", puede ir "true", o un arreglo de 2 elementos: "[true, 'asdwqfafsd']"
