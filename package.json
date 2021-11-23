@@ -1,6 +1,9 @@
 {
   "name": "p-instituto",
   "version": "1.0.0",
+  "nodemonConfig": {
+    "ext": "js,mjs,json,html"
+  },
   "description": "proyecto instituto",
   "main": "script.js",
   "scripts": {

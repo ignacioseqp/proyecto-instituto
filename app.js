@@ -6,12 +6,11 @@ const routerAlumnos = require('./routes/routesAlumnos');
 
 const app = express();
 
-app.use(express.static('public'));
 app.use(express.json());
 
-app.use('/', routerInstituto);
-app.use('/cursos', routerCursos);
-// app.use('/instructores', routerInstructores);
-app.use('/alumnos', routerAlumnos);
+app.use('/', express.static('public'), routerInstituto);
+app.use('/cursos', express.static('public'), routerCursos);
+app.use('/alumnos', express.static('public'), routerAlumnos);
+app.use('/instructores', express.static('public'), routerInstructores);
 
 module.exports = app;

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap.css.map" />
+    <script defer src="js/scriptCur.js"></script>
+    <title>${curso}</title>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-primary">
+      <div class="container-fluid">
+        <a id="btn-inicio" class="navbar-brand text-light" href="/">Inicio</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- CUERPO -->
+    <div class="container-fluid titulo p-4 ">
+      <span class="display-6 " style="display:inline-block; vertical-align:middle; font-size: 40px">
+        ${nombre} 
+      </span>
+      <span class="curso-estado badge rounded-pill bg-danger" style="display:inline-block; vertical-align:middle; font-size: 15px"
+        >${estado}</span
+      >
+      
+    </div>
+    <div class="container-fluid vigencia px-4 py-2">
+      <p style="font-size: 20px"><span class="display-6" style="font-size: 25px">Vigencia: </span> <span class="vigencia-desde" ></span>
+        ${desdeDia}/${desdeMes}/${desdeAño}
+      </span>
+       - 
+      <span class="vigencia-hasta"
+        >${hastaDia}/${hastaMes}/${hastaAño}</span
+      ></p>
+    </div>
+    <div class="container-fluid horarios px-4 py-2">
+      <span class="display-6" style="font-size: 25px">Horarios: </span>
+    </div>
+    <section class="container horario">
+      <table class="table table-striped table-hover text-center" id="tabla-horarios">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Lunes</th>
+            <th scope="col">Martes</th>
+            <th scope="col">Miércoles</th>
+            <th scope="col">Jueves</th>
+            <th scope="col">Viernes</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${horarios}
+        </tbody>
+      </table>
+    </section>
+    <div class="container-fluid titulo-instructores px-4 py-2">
+      <span class="display-6" style="font-size: 25px">Instructores: </span>
+    </div>
+    <section class="container instructores">
+      <table class="table table-striped table-hover" id="tabla-instructores">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Apellido/s</th>
+            <th scope="col">Nombre/s</th>
+            <th scope="col">Profesión/Titulo</th>
+            <th scope="col">E-Mail</th>
+            <th scope="col">Domicilio</th>
+            <th scope="col">Teléfono</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${instructores}
+        </tbody>
+      </table>
+    </section>
+    <div class="container-fluid titulo-alumnos px-4 py-2">
+      <span class="display-6" style="font-size: 25px">Alumnos: </span>
+    </div>
+    <section class="container alumnos">
+      <table class="table table-striped table-hover" id="tabla-alumnos">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Apellido/s</th>
+            <th scope="col">Nombre/s</th>
+            <th scope="col">Tipo de Documento</th>
+            <th scope="col">N° Documento</th>
+            <th scope="col">E-Mail</th>
+            <th scope="col">Domicilio</th>
+            <th scope="col">Teléfono</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${alumnos}
+        </tbody>
+      </table>
+    </section>
+  </body>
+</html>

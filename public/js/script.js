@@ -9,6 +9,7 @@ const btnAlumnos = document.getElementById('btn-alumnos');
 //CURSOS
 const formCurso = document.querySelector('.formulario-cursos');
 const contFormCurso = document.querySelector('.cont-formulario-curso');
+const tituCur = document.querySelector('.titulo-cursos');
 
 const btnOpenCurso = document.getElementById('openCurso');
 //Curso - Nombre
@@ -39,6 +40,7 @@ const horaFinCinco = document.getElementById('horaFin--5');
 const formInstr = document.querySelector('.formulario-instr');
 const contInstr = document.querySelector('.cont-instructor');
 const contFormInstr = document.querySelector('.cont-formulario-instr');
+const tituInstr = document.querySelector('.titulo-instructores');
 
 const btnOpenInstr = document.getElementById('openInstr');
 //Instructor - Datos personales
@@ -53,14 +55,15 @@ const instrTel = document.getElementById('instrTelefono');
 //ALUMNOS
 const formAlu = document.querySelector('.formulario-alu');
 const contFormAlu = document.querySelector('.cont-formulario-alu');
+const tituAlu = document.querySelector('.titulo-alumnos');
 
 const btnOpenAlu = document.getElementById('openAlu');
-//Instructor - Datos personales
+//Alumno - Datos personales
 const aluApellidos = document.getElementById('aluApellidos');
 const aluNombres = document.getElementById('aluNombres');
 const documentoTipo = document.getElementById('documentoTipo');
 const documentoNro = document.getElementById('documentoNro');
-//Instructor - Datos de contacto
+//Alumno - Datos de contacto
 const aluEmail = document.getElementById('aluEmail');
 const aluDom = document.getElementById('aluDomicilio');
 const aluTel = document.getElementById('aluTelefono');
@@ -72,7 +75,7 @@ btnInicio.addEventListener('click', (evt) => {
 
 btnCursos.addEventListener('click', (evt) => {
   evt.preventDefault();
-  btnOpenCurso.scrollIntoView(true, {
+  tituCur.scrollIntoView(true, {
     behavior: 'smooth',
   });
 });
@@ -80,14 +83,14 @@ btnCursos.addEventListener('click', (evt) => {
 btnInstructores.addEventListener('click', (evt) => {
   evt.preventDefault();
   console.log('Click');
-  btnOpenInstr.scrollIntoView(true, {
+  tituInstr.scrollIntoView(true, {
     behavior: 'smooth',
   });
 });
 
 btnAlumnos.addEventListener('click', (evt) => {
   evt.preventDefault();
-  btnOpenAlu.scrollIntoView(true, {
+  tituAlu.scrollIntoView(true, {
     behavior: 'smooth',
   });
 });

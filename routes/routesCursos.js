@@ -5,4 +5,6 @@ const routerCursos = express.Router();
 
 routerCursos.route('/').post(controllerCurso.crearCurso);
 
+routerCursos.route('/:ide').get(controllerCurso.mostrarCurso);
+
 module.exports = routerCursos;

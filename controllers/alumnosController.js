@@ -66,11 +66,11 @@ let mainTemplate = fs.readFileSync('templates/index.html', 'utf-8');
 
 exports.crearAlumno = async (req, res) => {
   try {
-    // let query = await Alumno.find();
-    // const nuevoId = query[query.length - 1] + 1;
+    let query = await Alumno.find().sort({ ide: 1 });
+    const nuevoId = query[query.length - 1].ide + 1;
 
     const objeto = {
-      id: 1,
+      ide: nuevoId,
       apellidos: req.body.apellidos,
       nombres: req.body.nombres,
       documentoTipo: req.body.documentoTipo,
@@ -80,7 +80,7 @@ exports.crearAlumno = async (req, res) => {
       telefono: req.body.telefono,
     };
 
-    // console.log(objeto);
+    console.log(objeto);
 
     const nuevoAlumno = await Alumno.create(objeto);
     res.json({

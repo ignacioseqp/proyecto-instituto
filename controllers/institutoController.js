@@ -9,14 +9,15 @@ let mainTemplate = fs.readFileSync('templates/index.html', 'utf-8');
 
 exports.mostrarTodo = async (req, res) => {
   try {
-    let queryAlu = await Alumno.find();
-    let queryIns = await Instructor.find();
-    let queryCur = await Curso.find();
+    let queryAlu = await Alumno.find().sort({ ide: 1 });
+    let queryIns = await Instructor.find().sort({ ide: 1 });
+    let queryCur = await Curso.find().sort({ ide: 1 });
 
     const aluHtml = queryAlu
       .map((alu) => {
         return `<tr>
-      <td>${alu.ide}</td>
+      <td><a href="/alumnos/${alu.ide}" 
+      style="text-decoration: none">${alu.ide}</a></td>
       <td>${alu.apellidos}</td>
       <td>${alu.nombres}</td>
       <td>${alu.documentoTipo}</td>
@@ -32,10 +33,15 @@ exports.mostrarTodo = async (req, res) => {
 
     const cursoHtml = queryCur
       .map((curso) => {
+        let estado = 'Activo';
+        if (curso.estado == false) {
+          estado = 'Inactivo';
+        }
         return `<tr>
-        <td>${curso.ide}</td>
+        <td><a href="/cursos/${curso.ide}" 
+        style="text-decoration: none">${curso.ide}</a></td>
         <td>${curso.nombre}</td>
-        <td>${curso.estado}</td>
+        <td>${estado}</td>
         <td>${curso.fechaDesde}</td>
         <td>${curso.fechaHasta}</td>
         <td>${curso.instructores.length}</td>
@@ -48,7 +54,8 @@ exports.mostrarTodo = async (req, res) => {
     const instrHtml = queryIns
       .map((instr) => {
         return `<tr>
-    <td>${instr.ide}</td>
+    <td><a href="/instructores/${instr.ide}" 
+    style="text-decoration: none">${instr.ide}</a></td>
     <td>${instr.apellidos}</td>
     <td>${instr.nombres}</td>
     <td>${instr.profTitulo}</td>

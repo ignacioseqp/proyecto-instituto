@@ -1,40 +1,34 @@
 const fs = require('fs');
 const Instructor = require('./../models/instructorModel');
 
-let mainTemplate = fs.readFileSync('templates/index.html', 'utf-8');
-
-exports.mostrarInstructores = async (req, res) => {
+exports.crearInstructor = async (req, res) => {
   try {
-    let query = await Instructor.find();
-    console.log(query);
+    let query = await Instructor.find().sort({ ide: 1 });
+    const nuevoId = query[query.length - 1].ide + 1;
 
-    const instrHtml = query
-      .map((instr) => {
-        return `<tr>
-      <td>${instr.id}</td>
-      <td>${instr.apellidos}</td>
-      <td>${instr.nombres}</td>
-      <td>${instr.profTitulo}</td>
-      <td>${instr.email}</td>
-      <td>${instr.domicilio}</td>
-      <td>${instr.telefono}</td>
-    </tr>`;
-      })
-      .join('');
-    mainTemplate = mainTemplate.replace('${instructores}', instrHtml);
+    const objeto = {
+      ide: nuevoId,
+      apellidos: req.body.apellidos,
+      nombres: req.body.nombres,
+      profTitulo: req.body.profTitulo,
+      email: req.body.email,
+      domicilio: req.body.domicilio,
+      telefono: req.body.telefono,
+    };
 
-    res.send(mainTemplate);
+    console.log(objeto);
 
-    // res.json({
-    //   status: 'success',
-    //   data: {
-    //     query,
-    //   },
-    // });
+    const nuevoInstructor = await Instructor.create(objeto);
+    res.json({
+      status: 'success',
+      data: {
+        alumno: nuevoInstructor,
+      },
+    });
   } catch (err) {
     res.json({
       status: 'fail',
-      message: 'Error de datos!' + `${err}`,
+      message: err.message,
     });
   }
 };
