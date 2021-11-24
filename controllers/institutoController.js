@@ -5,10 +5,11 @@ const apiOpciones = require('../apiOpciones');
 
 const fs = require('fs');
 
-let mainTemplate = fs.readFileSync('templates/index.html', 'utf-8');
+let template = fs.readFileSync('templates/index.html', 'utf-8');
 
 exports.mostrarTodo = async (req, res) => {
   try {
+    let mainTemplate = template;
     let queryAlu = await Alumno.find().sort({ ide: 1 });
     let queryIns = await Instructor.find().sort({ ide: 1 });
     let queryCur = await Curso.find().sort({ ide: 1 });

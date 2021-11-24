@@ -4,7 +4,7 @@ const Instructor = require('./../models/instructorModel');
 
 const fs = require('fs');
 
-let cursosTemplate = fs.readFileSync('templates/cursos.html', 'utf-8');
+let template = fs.readFileSync('templates/cursos.html', 'utf-8');
 
 exports.crearCurso = async (req, res) => {
   try {
@@ -40,6 +40,7 @@ exports.crearCurso = async (req, res) => {
 
 exports.mostrarCurso = async (req, res) => {
   try {
+    let cursosTemplate = template;
     let queryAlu = await Alumno.find();
     let queryInstr = await Instructor.find();
     let curso = await Curso.findOne({ ide: req.params.ide });
