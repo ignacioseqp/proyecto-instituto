@@ -53,6 +53,11 @@ exports.mostrarCurso = async (req, res) => {
     let hastaDia = curso.fechaHasta.slice(8, 10);
 
     cursosTemplate = cursosTemplate.replace('${curso}', curso.nombre);
+    cursosTemplate = cursosTemplate.replace('${ide}', curso.ide);
+    cursosTemplate = cursosTemplate.replace('${ide}', curso.ide);
+    if (curso.estado == true) {
+      cursosTemplate = cursosTemplate.replace('${checked}', 'checked');
+    }
     cursosTemplate = cursosTemplate.replace('${nombre}', curso.nombre);
     cursosTemplate = cursosTemplate.replace('${desdeDia}', desdeDia);
     cursosTemplate = cursosTemplate.replace('${desdeMes}', desdeMes);
@@ -123,6 +128,27 @@ exports.mostrarCurso = async (req, res) => {
     cursosTemplate = cursosTemplate.replace('${alumnos}', cursoAlumnos);
 
     res.send(cursosTemplate);
+  } catch (err) {
+    res.json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};
+
+exports.actualizarCurso = async (req, res) => {
+  try {
+    let curso = await Curso.updateOne({ ide: req.params.ide }, req.body, {
+      new: true,
+    });
+
+    console.log(curso);
+    res.json({
+      status: 'success',
+      data: {
+        curso,
+      },
+    });
   } catch (err) {
     res.json({
       status: 'fail',

@@ -5,64 +5,7 @@ const apiOpciones = require('../apiOpciones');
 
 const fs = require('fs');
 
-let mainTemplate = fs.readFileSync('templates/index.html', 'utf-8');
-
-// app.post('/cursos', function (req, res) {
-//   console.log(req.body);
-//   // crear el objeto
-//   const nuevoId = dataApp.cursos[dataApp.cursos.length - 1].id + 1;
-
-//   const objeto = {
-//     id: nuevoId,
-//     nombre: req.body.nombre,
-//     estado: 'Activo',
-//     fechaDesde: req.body.fechaDesde,
-//     fechaHasta: req.body.fechaHasta,
-//     horarios: req.body.horarios,
-//     instructores: [],
-//     alumnos: [],
-//   };
-
-//   // almacenar en data
-//   dataApp.cursos.push(objeto);
-
-//   fs.writeFile('dev-data/appData.json', JSON.stringify(dataApp), (err) => {
-//     res.status(201).json({
-//       status: 'success',
-//       data: {
-//         cursos: objeto,
-//       },
-//     });
-//   });
-// });
-
-// app.post('/instructores', function (req, res) {
-//   console.log(req.body);
-//   // crear el objeto
-//   const nuevoId = dataApp.instructores[dataApp.instructores.length - 1].id + 1;
-
-//   const objeto = {
-//     id: nuevoId,
-//     apellidos: req.body.apellidos,
-//     nombres: req.body.nombres,
-//     profTitulo: req.body.profTitulo,
-//     email: req.body.email,
-//     domicilio: req.body.domicilio,
-//     telefono: req.body.telefono,
-//   };
-
-//   // almacenar en data
-//   dataApp.instructores.push(objeto);
-
-//   fs.writeFile('dev-data/appData.json', JSON.stringify(dataApp), (err) => {
-//     res.status(201).json({
-//       status: 'success',
-//       data: {
-//         instructores: objeto,
-//       },
-//     });
-//   });
-// });
+let template = fs.readFileSync('templates/alumnos.html', 'utf-8');
 
 exports.crearAlumno = async (req, res) => {
   try {
@@ -97,52 +40,36 @@ exports.crearAlumno = async (req, res) => {
   }
 };
 
-exports.mostrarAlumnos = async (req, res) => {
-  try {
-    let queryAlu = await Alumno.find();
-    let queryIns = await Instructor.find();
-    let queryCur = await Curso.find();
-
-    const aluHtml = queryAlu
-      .map((alu) => {
-        return `<tr>
-    <td>${alu.id}</td>
-    <td>${alu.apellidos}</td>
-    <td>${alu.nombres}</td>
-    <td>${alu.documentoTipo}</td>
-    <td>${alu.documentoNro}</td>
-    <td>${alu.email}</td>
-    <td>${alu.domicilio}</td>
-    <td>${alu.telefono}</td>
-  </tr>`;
-      })
-      .join('');
-
-    mainTemplate = mainTemplate.replace('${alumnos}', aluHtml);
-
-    res.send(mainTemplate);
-  } catch (err) {
-    res.json({
-      status: 'fail',
-      message: 'Error de datos!',
-    });
-  }
-};
-
 exports.mostrarAlumno = async (req, res) => {
   try {
-    const alumno = await Alumno.findById(req.params.id);
+    let alumnosTemplate = template;
+    let alumno = await Alumno.findOne({ ide: req.params.ide });
+    let instructor = await Instructor.find();
+    let curso = await Curso.find();
 
-    res.json({
-      status: 'success',
-      data: {
-        alumno,
-      },
-    });
+    console.log(alumno);
+
+    alumnosTemplate = alumnosTemplate.replace('${ide}', alumno.ide);
+    alumnosTemplate = alumnosTemplate.replace('${nombres}', alumno.nombres);
+    alumnosTemplate = alumnosTemplate.replace('${apellidos}', alumno.apellidos);
+    alumnosTemplate = alumnosTemplate.replace('${ide}', alumno.ide);
+    alumnosTemplate = alumnosTemplate.replace(
+      '${documentoTipo}',
+      alumno.documentoTipo
+    );
+    alumnosTemplate = alumnosTemplate.replace(
+      '${documentoNro}',
+      alumno.documentoNro
+    );
+    alumnosTemplate = alumnosTemplate.replace('${email}', alumno.email);
+    alumnosTemplate = alumnosTemplate.replace('${domicilio}', alumno.domicilio);
+    alumnosTemplate = alumnosTemplate.replace('${telefono}', alumno.telefono);
+
+    res.send(alumnosTemplate);
   } catch (err) {
     res.json({
       status: 'fail',
-      message: 'Datos incorrectos!',
+      message: 'Template no se pudo cargar!',
     });
   }
 };

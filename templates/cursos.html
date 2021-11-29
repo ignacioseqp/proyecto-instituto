@@ -6,14 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/bootstrap.css.map" />
+    <link rel="stylesheet" href="css/style.css" />
+
     <script defer src="js/scriptCur.js"></script>
     <title>${curso}</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+
   </head>
   <body>
     <!-- NAVBAR -->
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-primary">
       <div class="container-fluid">
-        <a id="btn-inicio" class="navbar-brand text-light" href="/">Inicio</a>
+        <a id="btn-inicio" class="navbar-brand text-light" href="/">
+          <img
+            src="img/descarga.jpg"
+            width="30"
+            height="30"
+            class="d-inline-block align-top"
+            alt=""
+          />
+          Inicio
+        </a>
+        <!-- <a id="btn-inicio" class="navbar-brand text-light" href="/">Inicio</a> -->
         <button
           class="navbar-toggler"
           type="button"
@@ -109,5 +123,207 @@
         </tbody>
       </table>
     </section>
+    <!-- ACTUALIZAR CURSO -->
+    <div class="container-nav p-4">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-actualizar btn-primary" id="actCurso">
+          Actualizar Curso
+        </button>
+      </div>
+    </div>
+    <div
+        class="
+          container
+          form
+          cont-formulario-curso
+          mt-2
+          mb-4
+          py-2
+          border
+          d-none
+        "
+    >
+    
+    <form class="formulario-cursos" method="patch" action="/cursos/${ide}">
+      <div class="row pt-2 mb-4">
+        <div class="col">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switch" ${checked}>
+            <label class="form-check-label" for="flexSwitchCheckDefault">Activo</label>
+          </div>
+        </div>
+        <div class="col">
+          <label for="ide" id="ide-curso">${ide}</label>
+        </div>
+      </div>
+      <div class="row pt-2 mb-4">
+        <div class="col">
+          <label for="nombre">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ingrese el nombre del curso"
+            id="nombreCurso"
+          />
+        </div>
+        <div class="col">
+          <label for="txtDesde">Fecha de inicio</label>
+          <input
+            type="date"
+            class="form-control"
+            placeholder="Ingrese la fecha de inicio del curso"
+            id="fechaInicioCurso"
+          />
+        </div>
+        <div class="col">
+          <label for="txtHasta">Fecha de finalización</label>
+          <input
+            type="date"
+            class="form-control"
+            placeholder="Ingrese la fecha de finalización del curso"
+            id="fechaFinalCurso"
+          />
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-4">
+          <label for="selectDia">Dia</label>
+          <select class="form-control" id="dia--1">
+            <option>Lunes</option>
+          </select>
+        </div>
+        <div class="col-4">
+          <label for="inputHoraIni">Hora de inicio</label>
+          <input
+            type="time"
+            class="form-control"
+            id="horaInicio--1"
+            placeholder="00:00"
+          />
+        </div>
+        <div class="col-4">
+          <label for="inputHoraFin">Hora de finalización</label>
+          <input
+            type="time"
+            class="form-control"
+            id="horaFin--1"
+            placeholder="00:00"
+          />
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-4">
+          <label for="selectDia">Dia</label>
+          <select class="form-control" id="dia--2">
+            <option>Martes</option>
+          </select>
+        </div>
+        <div class="col-4">
+          <label for="inputHoraIni">Hora de inicio</label>
+          <input
+            type="time"
+            class="form-control"
+            id="horaInicio--2"
+            placeholder="00:00"
+          />
+        </div>
+        <div class="col-4">
+          <label for="inputHoraFin">Hora de finalización</label>
+          <input
+            type="time"
+            class="form-control"
+            id="horaFin--2"
+            placeholder="00:00"
+          />
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-4">
+          <label for="selectDia">Dia</label>
+          <select class="form-control" id="dia--3">
+            <option>Miércoles</option>
+          </select>
+        </div>
+        <div class="col-4">
+          <label for="inputHoraIni">Hora de inicio</label>
+          <input
+            type="time"
+            class="form-control"
+            id="horaInicio--3"
+            placeholder="00:00"
+          />
+        </div>
+        <div class="col-4">
+          <label for="inputHoraFin">Hora de finalización</label>
+          <input
+            type="time"
+            class="form-control"
+            id="horaFin--3"
+            placeholder="00:00"
+          />
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-4">
+          <label for="selectDia">Dia</label>
+          <select class="form-control" id="dia--4">
+            <option>Jueves</option>
+          </select>
+        </div>
+        <div class="col-4">
+          <label for="inputHoraIni">Hora de inicio</label>
+          <input
+            type="time"
+            class="form-control"
+            id="horaInicio--4"
+            placeholder="00:00"
+          />
+        </div>
+        <div class="col-4">
+          <label for="inputHoraFin">Hora de finalización</label>
+          <input
+            type="time"
+            class="form-control"
+            id="horaFin--4"
+            placeholder="00:00"
+          />
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-4">
+          <label for="selectDia">Dia</label>
+          <select class="form-control" id="dia--5">
+            <option>Viernes</option>
+          </select>
+        </div>
+        <div class="col-4">
+          <label for="inputHoraIni">Hora de inicio</label>
+          <input
+            type="time"
+            class="form-control"
+            id="horaInicio--5"
+            placeholder="00:00"
+          />
+        </div>
+        <div class="col-4">
+          <label for="inputHoraFin">Hora de finalización</label>
+          <input
+            type="time"
+            class="form-control"
+            id="horaFin--5"
+            placeholder="00:00"
+          />
+        </div>
+      </div>
+      <button type="button" class="btn btn-guardar btn-primary mt-2">
+        Guardar
+      </button>
+      <button type="button" class="btn btn-cancelar btn-danger mt-2 mx-4">
+        Cancelar
+      </button>
+    </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="css/bootstrap.min.js"></script>
   </body>
 </html>

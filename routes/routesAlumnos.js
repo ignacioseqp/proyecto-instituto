@@ -9,12 +9,9 @@ const routerAlumnos = express.Router();
 //   .route('/listado-filtrado')
 //   .get(controller.listadoFiltrado)
 //   .get(controller.mostrarAlumnos);
+routerAlumnos.route('/').post(controllerAlu.crearAlumno);
 routerAlumnos
-  .route('/')
-  .get(controllerAlu.mostrarAlumnos)
-  .post(controllerAlu.crearAlumno);
-routerAlumnos
-  .route('/:id')
+  .route('/:ide')
   .get(controllerAlu.mostrarAlumno)
   .patch(controllerAlu.actualizarAlumno)
   .delete(controllerAlu.eliminarAlumno);

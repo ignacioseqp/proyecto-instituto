@@ -6,14 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/bootstrap.css.map" />
+    <link rel="stylesheet" href="css/style.css" />
+
     <script defer src="js/script.js"></script>
     <title>Inicio</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
   </head>
   <body>
     <!-- NAVBAR -->
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-primary">
       <div class="container-fluid">
-        <a id="btn-inicio" class="navbar-brand text-light" href="#">Inicio</a>
+        <a id="btn-inicio" class="navbar-brand text-light" href="/">
+          <img
+            src="img/descarga.jpg"
+            width="30"
+            height="30"
+            class="d-inline-block align-top"
+            alt=""
+          />
+          Inicio
+        </a>
+        <!-- <a id="btn-inicio" class="navbar-brand text-light" href="#">Inicio</a> -->
         <button
           class="navbar-toggler"
           type="button"
@@ -34,6 +47,19 @@
             <a id="btn-alumnos" class="nav-link text-light" href="#">Alumnos</a>
           </div>
         </div>
+        <form class="form-inline my-2 my-lg-0">
+          <button
+            class="btn btn-outline-secondary text-light my-2 my-sm-0"
+            type="button"
+          >
+            <a
+              href="/login/googlesignin"
+              class="text-light"
+              style="text-decoration: none"
+              >Iniciar Sesión</a
+            >
+          </button>
+        </form>
       </div>
     </nav>
     <!-- CURSOS -->
@@ -458,5 +484,7 @@
         </tbody>
       </table>
     </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="css/bootstrap.min.js"></script>
   </body>
 </html>
