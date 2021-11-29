@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/', express.static('public'), routerInstituto);
-app.use('/api/auth', express.static('public'), routerAuth);
-app.use('/login', express.static('public'), routerGoogle);
+app.use('/login', express.static('public'), routerAuth);
+// app.use('/login', express.static('public'), routerGoogle);
 app.use('/api/usuarios', express.static('public'), routerUsuarios);
 app.use('/cursos', express.static('public'), routerCursos);
 app.use('/alumnos', express.static('public'), routerAlumnos);

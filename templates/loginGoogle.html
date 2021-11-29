@@ -38,12 +38,31 @@
       </div>
     </nav>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <div
+      id="g_id_onload"
+      data-client_id="787418811025-6j03ojd15qq5mo0asnd5viji5qdb5qgv.apps.googleusercontent.com"
+      data-auto_select="true"
+      data-callback="handleCredentialResponse"
+    ></div>
+
+    <div
+      class="g_id_signin"
+      data-type="standard"
+      data-size="large"
+      data-theme="outline"
+      data-text="sign_in_with"
+      data-shape="rectangular"
+      data-logo_alignment="left"
+    ></div>
+    <div>
+      <button id="btn-logout" class="btn btn-primary">Logout</button>
+    </div>
     <script>
       function handleCredentialResponse(response) {
         // console.log('Encoded JWT ID token: ' + response.credential);
         const body = { id_token: response.credential };
 
-        fetch('http://localhost:3000/api/auth/googlesignin', {
+        fetch('/login/googlesignin', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -52,22 +71,33 @@
         })
           .then((resp) => resp.json())
           .then((resp) => {
-            console.log(resp);
+            // console.log(resp);
+            console.log(`Google token: ${response.credential}`);
+            localStorage.setItem('email', resp.correo);
           })
           .catch(console.warn);
       }
-      window.onload = function () {
-        google.accounts.id.initialize({
-          client_id:
-            '787418811025-6j03ojd15qq5mo0asnd5viji5qdb5qgv.apps.googleusercontent.com',
-          callback: handleCredentialResponse,
+
+      const button = document.getElementById('btn-logout');
+      button.onclick = async () => {
+        google.accounts.id.disableAutoSelect();
+        google.accounts.id.revoke(localStorage.getItem('email'), (done) => {
+          localStorage.clear();
+          location.reload();
         });
-        google.accounts.id.renderButton(
-          document.getElementById('buttonDiv'),
-          { theme: 'outline', size: 'large' } // customization attributes
-        );
-        google.accounts.id.prompt(); // also display the One Tap dialog
       };
+      // window.onload = function () {
+      //   google.accounts.id.initialize({
+      //     client_id:
+      //       '787418811025-6j03ojd15qq5mo0asnd5viji5qdb5qgv.apps.googleusercontent.com',
+      //     callback: handleCredentialResponse,
+      //   });
+      //   google.accounts.id.renderButton(
+      //     document.getElementById('buttonDiv'),
+      //     { theme: 'outline', size: 'large' } // customization attributes
+      //   );
+      //   google.accounts.id.prompt(); // also display the One Tap dialog
+      // };
     </script>
     <div id="buttonDiv"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
