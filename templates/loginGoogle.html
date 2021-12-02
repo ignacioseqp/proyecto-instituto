@@ -122,7 +122,7 @@
           .then((resp) => {
             // console.log(resp);
             console.log(`Google token: ${response.credential}`);
-            localStorage.setItem('email', resp.correo);
+            localStorage.setItem('email', response.correo);
           })
           .catch(console.warn);
       }
