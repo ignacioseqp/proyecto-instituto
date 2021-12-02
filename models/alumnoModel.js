@@ -24,6 +24,9 @@ const alumnoSchema = new mongoose.Schema(
       required: [true, 'El numero de documento es obligatorio!'],
       unique: true,
     },
+    cursos: {
+      type: [String],
+    },
     email: {
       type: String,
       required: [true, 'El e-mail es obligatorio!'],

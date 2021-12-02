@@ -15,6 +15,9 @@ const instructorSchema = new mongoose.Schema(
       type: String,
       required: [true, 'El nombre del alumno es obligatorio!'],
     },
+    cursos: {
+      type: [String],
+    },
     profTitulo: {
       type: String,
       required: [true, 'La profesion o titulo es obligatorio!'],

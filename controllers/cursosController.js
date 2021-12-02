@@ -1,6 +1,4 @@
-const Curso = require('./../models/cursoModel');
-const Alumno = require('./../models/alumnoModel');
-const Instructor = require('./../models/instructorModel');
+const { Curso, Alumno, Instructor } = require('../models');
 
 const fs = require('fs');
 
@@ -8,18 +6,31 @@ let template = fs.readFileSync('templates/cursos.html', 'utf-8');
 
 exports.crearCurso = async (req, res) => {
   try {
-    let query = await Curso.find().sort({ ide: 1 });
-    const nuevoId = query[query.length - 1].ide + 1;
+    let query = await Curso.find();
+    console.log(query.length);
+    const nuevoId = query.length + 1;
+    console.log(nuevoId);
+
+    const nombre = req.body.nombre;
+    const cursoDB = await Curso.findOne({ nombre });
+    if (cursoDB) {
+      return res.status(400).json({
+        msg: 'Ya existe un curso con ese nombre',
+      });
+    }
+    let instructoresCurso = await Instructor.find({ cursos: req.body.nombre });
+    let alumnosCurso = await Alumno.find({ cursos: req.body.nombre });
 
     const objeto = {
       ide: nuevoId,
+      usuario: req.usuario,
       nombre: req.body.nombre,
       estado: false,
       fechaDesde: req.body.fechaDesde,
       fechaHasta: req.body.fechaHasta,
       horarios: req.body.horarios,
-      instructores: [],
-      alumnos: [],
+      instructores: instructoresCurso,
+      alumnos: alumnosCurso,
     };
 
     const nuevoCurso = await Curso.create(objeto);
@@ -41,9 +52,18 @@ exports.crearCurso = async (req, res) => {
 exports.mostrarCurso = async (req, res) => {
   try {
     let cursosTemplate = template;
-    let queryAlu = await Alumno.find();
-    let queryInstr = await Instructor.find();
-    let curso = await Curso.findOne({ ide: req.params.ide });
+
+    let curso = await Curso.findOne({ ide: req.params.ide })
+      .populate({
+        path: 'instructores',
+        select: ['ide', 'nombres', 'apellidos'],
+        options: { sort: { ide: 1 } },
+      })
+      .populate({
+        path: 'alumnos',
+        select: ['ide', 'nombres', 'apellidos'],
+        options: { sort: { ide: 1 } },
+      });
 
     let desdeAño = curso.fechaDesde.slice(0, 4);
     let desdeMes = curso.fechaDesde.slice(5, 7);
@@ -73,36 +93,32 @@ exports.mostrarCurso = async (req, res) => {
     }
 
     const horarios = `<tr>
-      <th scope="row">Desde</td>
-      <td>${curso.horarios[0].desdeHora}</td>
-      <td>${curso.horarios[1].desdeHora}</td>
-      <td>${curso.horarios[2].desdeHora}</td>
-      <td>${curso.horarios[3].desdeHora}</td>
-      <td>${curso.horarios[4].desdeHora}</td>
-    </tr>
-    <tr>
-      <th scope="row">Hasta</td>
-      <td>${curso.horarios[0].hastaHora}</td>
-      <td>${curso.horarios[1].hastaHora}</td>
-      <td>${curso.horarios[2].hastaHora}</td>
-      <td>${curso.horarios[3].hastaHora}</td>
-      <td>${curso.horarios[4].hastaHora}</td>
-    </tr>`;
+        <th scope="row">Desde</td>
+        <td>${curso.horarios[0].desdeHora}</td>
+        <td>${curso.horarios[1].desdeHora}</td>
+        <td>${curso.horarios[2].desdeHora}</td>
+        <td>${curso.horarios[3].desdeHora}</td>
+        <td>${curso.horarios[4].desdeHora}</td>
+      </tr>
+      <tr>
+        <th scope="row">Hasta</td>
+        <td>${curso.horarios[0].hastaHora}</td>
+        <td>${curso.horarios[1].hastaHora}</td>
+        <td>${curso.horarios[2].hastaHora}</td>
+        <td>${curso.horarios[3].hastaHora}</td>
+        <td>${curso.horarios[4].hastaHora}</td>
+      </tr>`;
 
     cursosTemplate = cursosTemplate.replace('${horarios}', horarios);
 
     const cursoInstructores = curso.instructores
       .map((ins) => {
         return `<tr>
-      <td><a href="/instructores/${ins}" 
-      style="text-decoration: none">${ins}</a></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>`;
+        <td><a href="/instructores/${ins.ide}"
+        style="text-decoration: none">${ins.ide}</a></td>
+        <td>${ins.nombres}</td>
+        <td>${ins.apellidos}</td>
+      </tr>`;
       })
       .join('');
     cursosTemplate = cursosTemplate.replace(
@@ -113,16 +129,11 @@ exports.mostrarCurso = async (req, res) => {
     const cursoAlumnos = curso.alumnos
       .map((alu) => {
         return `<tr>
-      <td><a href="/alumnos/${alu}" 
-      style="text-decoration: none">${alu}</a></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>`;
+        <td><a href="/alumnos/${alu.ide}"
+        style="text-decoration: none">${alu.ide}</a></td>
+        <td>${alu.nombres}</td>
+        <td>${alu.apellidos}</td>
+      </tr>`;
       })
       .join('');
     cursosTemplate = cursosTemplate.replace('${alumnos}', cursoAlumnos);
@@ -144,7 +155,7 @@ exports.actualizarCurso = async (req, res) => {
 
     console.log(curso);
     res.json({
-      status: 'success',
+      status: 'success - actualizado',
       data: {
         curso,
       },
@@ -156,3 +167,51 @@ exports.actualizarCurso = async (req, res) => {
     });
   }
 };
+
+exports.desactivarCurso = async (req, res) => {
+  try {
+    let curso = await Curso.updateOne(
+      { ide: req.params.ide },
+      { estado: false },
+      {
+        new: true,
+      }
+    );
+
+    console.log(curso);
+    res.json({
+      status: 'success - desactivado',
+      data: {
+        curso,
+      },
+    });
+  } catch (err) {
+    res.json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};
+
+//POPULATE
+
+// exports.mostrarCurso = async (req, res) => {
+//   try {
+//     let curso = await Curso.findOne({ ide: req.params.ide })
+//       .populate('instructores')
+//       .populate('alumnos', ['ide', 'nombres', 'apellidos']);
+
+//     curso.alumnos.forEach((alu) => {
+//       console.log(alu.nombres);
+//     });
+
+//     res.json({
+//       curso,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({
+//       msg: err,
+//     });
+//   }
+// }

@@ -49,6 +49,7 @@ if (formCurso) {
   });
   btnGuardar.addEventListener('click', function () {
     actualizarCurso();
+    location.reload();
   });
   btnActualizar.addEventListener('click', function () {
     contFormCurso.classList.toggle('d-none');

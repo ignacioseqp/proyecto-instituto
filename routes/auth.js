@@ -28,6 +28,6 @@ router.post(
   googleSignin
 );
 
-router.get('/googlesignin', google);
+router.get('/', google);
 
 module.exports = router;

@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
+// const Usuario = require('../models/usuario');
 
-const cursoSchema = new mongoose.Schema(
+const cursoSchema = new Schema(
   {
     ide: {
       type: Number,
@@ -15,6 +16,11 @@ const cursoSchema = new mongoose.Schema(
       type: Boolean,
       required: [true, 'El estado del curso es obligatorio!'],
     },
+    usuario: {
+      type: Schema.Types.ObjectId,
+      href: 'Usuario',
+      required: true,
+    },
     fechaDesde: {
       type: String,
       required: [true, 'La fecha de inicio del curso es obligatoria!'],
@@ -26,12 +32,8 @@ const cursoSchema = new mongoose.Schema(
     horarios: {
       type: [Object],
     },
-    instructores: {
-      type: [Number],
-    },
-    alumnos: {
-      type: [Number],
-    },
+    instructores: [{ type: Schema.Types.ObjectId, ref: 'Instructore' }],
+    alumnos: [{ type: Schema.Types.ObjectId, ref: 'Alumno' }],
   },
   {
     toJSON: { virtuals: true },
@@ -39,6 +41,6 @@ const cursoSchema = new mongoose.Schema(
   }
 );
 
-const Curso = mongoose.model('Curso', cursoSchema);
+const Curso = model('Curso', cursoSchema);
 
 module.exports = Curso;

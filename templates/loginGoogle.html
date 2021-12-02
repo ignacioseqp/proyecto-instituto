@@ -10,6 +10,21 @@
     <title>Document</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
   </head>
+  <style>
+    .g_id_signin {
+      float: none;
+      position: static;
+      display: block;
+      margin: auto;
+      width: max - content;
+    }
+    .card {
+      float: none;
+      position: static;
+      margin: auto;
+      max-width: 60ch;
+    }
+  </style>
   <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-primary">
       <div class="container-fluid">
@@ -38,25 +53,59 @@
       </div>
     </nav>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <div
-      id="g_id_onload"
-      data-client_id="787418811025-6j03ojd15qq5mo0asnd5viji5qdb5qgv.apps.googleusercontent.com"
-      data-auto_select="true"
-      data-callback="handleCredentialResponse"
-    ></div>
+    <section class="container pt-4 mt-4">
+      <div class="card mt-4">
+        <div class="card-header text-center mb-2"><b>Iniciar Sesión</b></div>
+        <div class="row mb-2 mx-4">
+          <div class="col">
+            <label for="userEmail">E-Mail</label>
+            <input
+              type="email"
+              class="form-control mb-2"
+              placeholder="Ingrese la dirección de e-mail"
+              id="userEmail"
+            />
+            <label for="userContraseña">Contraseña</label>
+            <input
+              type="password"
+              class="form-control mb-3"
+              placeholder="Ingrese su contraseña aquí"
+              id="userContraseña"
+            />
+            <div>
+              <button id="btn-login" class="btn btn-primary mb-2">
+                Ingresar
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          id="g_id_onload"
+          data-client_id="787418811025-6j03ojd15qq5mo0asnd5viji5qdb5qgv.apps.googleusercontent.com"
+          data-auto_select="false"
+          data-callback="handleCredentialResponse"
+        ></div>
 
-    <div
-      class="g_id_signin"
-      data-type="standard"
-      data-size="large"
-      data-theme="outline"
-      data-text="sign_in_with"
-      data-shape="rectangular"
-      data-logo_alignment="left"
-    ></div>
-    <div>
-      <button id="btn-logout" class="btn btn-primary">Logout</button>
-    </div>
+        <div
+          class="g_id_signin"
+          data-type="standard"
+          data-size="large"
+          data-theme="outline"
+          data-text="sign_in_with"
+          data-shape="rectangular"
+          data-logo_alignment="left"
+        >
+          Botón
+        </div>
+
+        <div class="card-footer text-muted mt-2">
+          <div>
+            <button id="btn-logout" class="btn btn-primary mx-4">Logout</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <script>
       function handleCredentialResponse(response) {
         // console.log('Encoded JWT ID token: ' + response.credential);
@@ -86,18 +135,24 @@
           location.reload();
         });
       };
-      // window.onload = function () {
-      //   google.accounts.id.initialize({
-      //     client_id:
-      //       '787418811025-6j03ojd15qq5mo0asnd5viji5qdb5qgv.apps.googleusercontent.com',
-      //     callback: handleCredentialResponse,
-      //   });
-      //   google.accounts.id.renderButton(
-      //     document.getElementById('buttonDiv'),
-      //     { theme: 'outline', size: 'large' } // customization attributes
-      //   );
-      //   google.accounts.id.prompt(); // also display the One Tap dialog
-      // };
+
+      const btnLogin = document.getElementById('btn-login');
+      const userEmail = document.getElementById('userEmail');
+      const userContraseña = document.getElementById('userContraseña');
+
+      btnLogin.addEventListener('click', () => {
+        let dataLogin = {
+          correo: userEmail.value,
+          password: userContraseña.value,
+        };
+        let response = fetch(`/login`, {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify(dataLogin),
+        });
+      });
     </script>
     <div id="buttonDiv"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
