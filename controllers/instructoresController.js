@@ -10,9 +10,11 @@ exports.crearInstructor = async (req, res) => {
 
     const objeto = {
       ide: nuevoId,
+      estado: true,
       apellidos: req.body.apellidos,
       nombres: req.body.nombres,
       profTitulo: req.body.profTitulo,
+      cursos: [],
       email: req.body.email,
       domicilio: req.body.domicilio,
       telefono: req.body.telefono,
@@ -46,6 +48,23 @@ exports.mostrarInstructor = async (req, res) => {
       '${ide}',
       instructor.ide
     );
+    if (instructor.estado == true) {
+      instructoresTemplate = instructoresTemplate.replace(
+        '${checked}',
+        'checked'
+      );
+    }
+    if (instructor.estado) {
+      instructoresTemplate = instructoresTemplate.replace(
+        '${estado}',
+        'Activo'
+      );
+    } else {
+      instructoresTemplate = instructoresTemplate.replace(
+        '${estado}',
+        'Inactivo'
+      );
+    }
     instructoresTemplate = instructoresTemplate.replace(
       '${nombres}',
       instructor.nombres
@@ -57,6 +76,10 @@ exports.mostrarInstructor = async (req, res) => {
     instructoresTemplate = instructoresTemplate.replace(
       '${ide}',
       instructor.ide
+    );
+    instructoresTemplate = instructoresTemplate.replace(
+      '${cursos}',
+      instructor.cursos[0]
     );
     instructoresTemplate = instructoresTemplate.replace(
       '${profTitulo}',
@@ -86,38 +109,48 @@ exports.mostrarInstructor = async (req, res) => {
 
 exports.actualizarInstructor = async (req, res) => {
   try {
-    const instructor = await Instructor.findByIdAndUpdate(
-      req.params.id,
+    let instructor = await Instructor.updateOne(
+      { ide: req.params.ide },
       req.body,
       {
         new: true,
       }
     );
 
+    console.log(instructor);
     res.json({
-      status: 'success',
-      data: instructor,
+      status: 'success - actualizado',
+      data: { instructor },
     });
   } catch (err) {
     res.json({
       status: 'fail',
-      data: 'Datos incorrectos!',
+      message: err.message,
     });
   }
 };
 
-exports.eliminarInstructor = async (req, res) => {
+exports.desactivarInstructor = async (req, res) => {
   try {
-    await Instructor.findByIdAndDelete(req.params.id);
+    let instructor = await Instructor.updateOne(
+      { ide: req.params.ide },
+      { estado: false },
+      {
+        new: true,
+      }
+    );
 
+    console.log(instructor);
     res.json({
-      status: 'success',
-      data: 'instructor eliminado',
+      status: 'success - desactivado',
+      data: {
+        instructor,
+      },
     });
   } catch (err) {
     res.json({
-      status: 'success',
-      data: 'Datos incorrectos!',
+      status: 'fail',
+      message: err.message,
     });
   }
 };

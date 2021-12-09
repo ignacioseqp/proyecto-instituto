@@ -22,11 +22,11 @@ const cursoSchema = new Schema(
       required: true,
     },
     fechaDesde: {
-      type: String,
+      type: [String],
       required: [true, 'La fecha de inicio del curso es obligatoria!'],
     },
     fechaHasta: {
-      type: String,
+      type: [String],
       required: [true, 'La fecha de finalización del curso es obligatoria!'],
     },
     horarios: {

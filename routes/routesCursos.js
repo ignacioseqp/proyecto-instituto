@@ -28,7 +28,7 @@ routerCursos.patch(
   '/:ide',
   [
     validarJWT,
-    tieneRole('ADMIN_ROLE', 'USER_ROLE'),
+    esAdminRole,
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('fechaDesde', 'La fecha de inicio es obligatoria').not().isEmpty(),
     check('fechaHasta', 'La fecha de finalización es obligatoria')

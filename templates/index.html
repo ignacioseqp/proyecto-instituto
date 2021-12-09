@@ -92,6 +92,7 @@
                 class="form-control"
                 placeholder="Ingrese el nombre del curso"
                 id="nombreCurso"
+                required
               />
             </div>
             <div class="col">
@@ -101,6 +102,7 @@
                 class="form-control"
                 placeholder="Ingrese la fecha de inicio del curso"
                 id="fechaInicioCurso"
+                required
               />
             </div>
             <div class="col">
@@ -110,6 +112,7 @@
                 class="form-control"
                 placeholder="Ingrese la fecha de finalización del curso"
                 id="fechaFinalCurso"
+                required
               />
             </div>
           </div>
@@ -298,6 +301,7 @@
                 class="form-control"
                 placeholder="Ingrese el/los apellido/s"
                 id="instrApellidos"
+                required
               />
             </div>
             <div class="col">
@@ -307,6 +311,7 @@
                 class="form-control"
                 placeholder="Ingrese el/los nombre/s"
                 id="instrNombres"
+                required
               />
             </div>
           </div>
@@ -318,8 +323,18 @@
                 class="form-control"
                 placeholder="Ingrese la profesión o título"
                 id="profTitulo"
+                required
               />
             </div>
+            <div class="col">
+              <label for="cursos">Curso</label>
+              <select class="form-select" aria-label="Cursos" id="instrCursos">
+                <option value=" " selected></option>
+                ${cursosSelec}
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
             <div class="col">
               <label for="instrEmail">E-Mail</label>
               <input
@@ -327,10 +342,9 @@
                 class="form-control"
                 placeholder="Ingrese la dirección de e-mail"
                 id="instrEmail"
+                required
               />
             </div>
-          </div>
-          <div class="row mb-2">
             <div class="col">
               <label for="instrDomicilio">Domicilio</label>
               <input
@@ -338,6 +352,7 @@
                 class="form-control"
                 placeholder="Ingrese el domicilio"
                 id="instrDomicilio"
+                required
               />
             </div>
             <div class="col">
@@ -347,6 +362,7 @@
                 class="form-control"
                 placeholder="Ingrese el número de teléfono"
                 id="instrTelefono"
+                required
               />
             </div>
           </div>

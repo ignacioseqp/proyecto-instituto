@@ -120,9 +120,9 @@
         })
           .then((resp) => resp.json())
           .then((resp) => {
-            // console.log(resp);
+            console.log(resp);
             console.log(`Google token: ${response.credential}`);
-            localStorage.setItem('email', response.correo);
+            localStorage.setItem('token', resp.token);
           })
           .catch(console.warn);
       }
@@ -145,13 +145,20 @@
           correo: userEmail.value,
           password: userContraseña.value,
         };
-        let response = fetch(`/login`, {
+
+        fetch(`/login`, {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',
           },
           body: JSON.stringify(dataLogin),
-        });
+        })
+          .then((resp) => resp.json())
+          .then((resp) => {
+            console.log(resp);
+            localStorage.setItem('token', resp.token);
+          })
+          .catch(console.warn);
       });
     </script>
     <div id="buttonDiv"></div>

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/bootstrap.css.map" />
     <link rel="stylesheet" href="css/style.css" />
 
-    <script defer src="js/scriptCur.js"></script>
+    <script defer src="js/scriptInstr.js"></script>
     <title>Instructor #${ide}</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
   </head>
@@ -44,7 +44,9 @@
 
     <section class="container pt-4 mt-4">
       <div class="card text-center mt-4">
-        <div class="card-header mb-2"><b>Instructor - ID #${ide}</b></div>
+        <div class="card-header mb-2">
+          <b>Instructor - ID #<span id="ide">${ide}</span></b>
+        </div>
         <img
           src="img/descarga.jpg"
           class="center"
@@ -59,15 +61,131 @@
           alt="instructor"
         />
         <div class="card-body">
-          <h5 class="card-title">${nombres} ${apellidos}</h5>
+          <h5 class="card-title">
+            <span id="nombres">${nombres}</span>
+            <span id="apellidos">${apellidos}</span>
+          </h5>
           <p class="card-text">
-            <b>Profesión/Titulo:</b> ${profTitulo}<br />
-            <b>E-Mail:</b> ${email}<br />
-            <b>Domicilio:</b> ${domicilio}<br />
-            <b>Teléfono:</b> ${telefono}
+            <b>Profesión/Titulo:</b> <span id="profTitulo">${profTitulo}</span
+            ><br />
+            <b>Cursos:</b> <span id="cursos">${cursos}</span><br />
+            <b>E-Mail:</b> <span id="email">${email}</span><br />
+            <b>Domicilio:</b> <span id="domicilio">${domicilio}</span><br />
+            <b>Teléfono:</b> <span id="telefono">${telefono}</span>
           </p>
         </div>
-        <div class="card-footer text-muted"></div>
+      </div>
+      <div class="container-nav p-4">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button
+            type="button"
+            class="btn btn-actualizar btn-primary"
+            id="actInstructor"
+          >
+            Actualizar Instructor
+          </button>
+        </div>
+      </div>
+      <!-- FORMULARIO -->
+      <div
+        class="container form cont-formulario-instructor mt-2 mb-4 py-2 border"
+      >
+        <form
+          class="formulario-instr"
+          method="patch"
+          action="/instructores/${ide}"
+        >
+          <div class="row pt-2 mb-4">
+            <div class="col">
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="switch"
+                  ${checked}
+                />
+                <label class="form-check-label" for="flexSwitchCheckDefault"
+                  >${estado}</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <label for="instrApellidos">Apellido/s</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ingrese el/los apellido/s"
+                id="instrApellidos"
+              />
+            </div>
+            <div class="col">
+              <label for="instrNombres">Nombre/s</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ingrese el/los nombre/s"
+                id="instrNombres"
+              />
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <label for="instrProfTit">Profesión / Título</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ingrese la profesión / título"
+                id="instrProfTit"
+              />
+            </div>
+            <div class="col">
+              <label for="instrCursos">Cursos</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ingrese los cursos"
+                id="instrCursos"
+              />
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <label for="instrDomicilio">Domicilio</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ingrese el domicilio"
+                id="instrDomicilio"
+              />
+            </div>
+            <div class="col">
+              <label for="instrTelefono">Teléfono</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Ingrese el número de teléfono"
+                id="instrTelefono"
+              />
+            </div>
+            <div class="col">
+              <label for="instrEmail">E-Mail</label>
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Ingrese la dirección de e-mail"
+                id="instrEmail"
+              />
+            </div>
+          </div>
+          <button type="button" class="btn btn-guardar btn-primary mt-2">
+            Guardar
+          </button>
+          <button type="button" class="btn btn-cancelar btn-danger mt-2 mx-4">
+            Cancelar
+          </button>
+        </form>
       </div>
     </section>
 

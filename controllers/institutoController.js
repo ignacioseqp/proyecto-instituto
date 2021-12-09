@@ -32,24 +32,38 @@ exports.mostrarTodo = async (req, res) => {
 
     mainTemplate = mainTemplate.replace('${alumnos}', aluHtml);
 
-    const cursoHtml = queryCur
-      .map((curso) => {
-        let estado = 'Activo';
-        if (curso.estado == false) {
-          estado = 'Inactivo';
+    let cursoHtml = await Promise.all(
+      queryCur.map(async (curso) => {
+        try {
+          curso.instructores = await Instructor.find({
+            cursos: curso.nombre,
+          });
+          let estado = 'Activo';
+          if (curso.estado == false) {
+            estado = 'Inactivo';
+          }
+          return `<tr>
+          <td><a href="/cursos/${curso.ide}" 
+          style="text-decoration: none">${curso.ide}</a></td>
+          <td>${curso.nombre}</td>
+          <td>${estado}</td>
+          <td>${curso.fechaDesde[0]}/${curso.fechaDesde[1]}/${curso.fechaDesde[2]}</td>
+          <td>${curso.fechaHasta[0]}/${curso.fechaHasta[1]}/${curso.fechaHasta[2]}</td>
+          <td>${curso.instructores.length}</td>
+          <td>${curso.alumnos.length}</td>
+        </tr>`;
+        } catch (err) {
+          return console.log(err);
         }
-        return `<tr>
-        <td><a href="/cursos/${curso.ide}" 
-        style="text-decoration: none">${curso.ide}</a></td>
-        <td>${curso.nombre}</td>
-        <td>${estado}</td>
-        <td>${curso.fechaDesde}</td>
-        <td>${curso.fechaHasta}</td>
-        <td>${curso.instructores.length}</td>
-        <td>${curso.alumnos.length}</td>
-      </tr>`;
+      })
+    );
+
+    cursoHtml = cursoHtml
+      .map((cur) => {
+        return cur;
       })
       .join('');
+
     mainTemplate = mainTemplate.replace('${cursos}', cursoHtml);
 
     const instrHtml = queryIns
@@ -68,11 +82,19 @@ exports.mostrarTodo = async (req, res) => {
       .join('');
     mainTemplate = mainTemplate.replace('${instructores}', instrHtml);
 
+    const cursosSelec = queryCur
+      .map((cur) => {
+        return `<option value="${cur.nombre}">${cur.nombre}</option>`;
+      })
+      .join('');
+
+    mainTemplate = mainTemplate.replace('${cursosSelec}', cursosSelec);
+
     res.send(mainTemplate);
   } catch (err) {
     res.json({
       status: 'fail',
-      message: 'Error de datos!',
+      message: 'Error de datos!' + err,
     });
   }
 };

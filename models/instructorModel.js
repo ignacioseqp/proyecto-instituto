@@ -7,6 +7,10 @@ const instructorSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    estado: {
+      type: Boolean,
+      required: [true, 'El estado del curso es obligatorio!'],
+    },
     apellidos: {
       type: String,
       required: [true, 'El apellido del alumno es obligatorio!'], //default: "false", puede ir "true", o un arreglo de 2 elementos: "[true, 'asdwqfafsd']"
@@ -14,6 +18,9 @@ const instructorSchema = new mongoose.Schema(
     nombres: {
       type: String,
       required: [true, 'El nombre del alumno es obligatorio!'],
+    },
+    img: {
+      type: String,
     },
     cursos: {
       type: [String],

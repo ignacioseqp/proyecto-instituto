@@ -39,8 +39,8 @@ exports.login = async (req = request, res = response) => {
 
     // generar token
     const token = await generarJWT(usuario.id);
-
     console.log(usuario, token);
+
     res.json({ usuario, token });
   } catch (error) {
     console.log(error);

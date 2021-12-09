@@ -41,7 +41,7 @@ const formInstr = document.querySelector('.formulario-instr');
 const contInstr = document.querySelector('.cont-instructor');
 const contFormInstr = document.querySelector('.cont-formulario-instr');
 const tituInstr = document.querySelector('.titulo-instructores');
-
+const instrCursos = document.getElementById('instrCursos');
 const btnOpenInstr = document.getElementById('openInstr');
 //Instructor - Datos personales
 const instrApellidos = document.getElementById('instrApellidos');
@@ -142,8 +142,16 @@ const enviarFormCurso = async function () {
     // construir el objeto
     let data = {
       nombre: cursoNombre.value,
-      fechaDesde: cursoInicio.value,
-      fechaHasta: cursoFinal.value,
+      fechaDesde: [
+        cursoInicio.value.slice(8, 10),
+        cursoInicio.value.slice(5, 7),
+        cursoInicio.value.slice(0, 4),
+      ],
+      fechaHasta: [
+        cursoFinal.value.slice(8, 10),
+        cursoFinal.value.slice(5, 7),
+        cursoFinal.value.slice(0, 4),
+      ],
       horarios: [
         {
           dia: diaUno.value,
@@ -177,13 +185,14 @@ const enviarFormCurso = async function () {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
+        'x-token': `${localStorage.getItem('token')}`,
       },
       body: JSON.stringify(data),
     });
   } catch (err) {
     console.log(err);
   }
-  // location.reload();
+  location.reload();
 };
 
 const enviarFormInstr = async function () {
@@ -192,6 +201,7 @@ const enviarFormInstr = async function () {
     let data = {
       apellidos: instrApellidos.value,
       nombres: instrNombres.value,
+      cursos: [instrCursos.value],
       profTitulo: instrProfTitu.value,
       email: instrEmail.value,
       domicilio: instrDom.value,
@@ -208,7 +218,7 @@ const enviarFormInstr = async function () {
   } catch (err) {
     console.log(err);
   }
-  // location.reload();
+  location.reload();
 };
 
 const enviarFormAlu = async function () {
@@ -234,5 +244,5 @@ const enviarFormAlu = async function () {
   } catch (err) {
     console.log(err);
   }
-  // location.reload();
+  location.reload();
 };

@@ -8,6 +8,6 @@ routerInstructores
   .route('/:ide')
   .get(controller.mostrarInstructor)
   .patch(controller.actualizarInstructor)
-  .delete(controller.eliminarInstructor);
+  .delete(controller.desactivarInstructor);
 
 module.exports = routerInstructores;

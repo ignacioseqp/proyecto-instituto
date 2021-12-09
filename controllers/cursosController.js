@@ -65,26 +65,24 @@ exports.mostrarCurso = async (req, res) => {
         options: { sort: { ide: 1 } },
       });
 
-    let desdeAño = curso.fechaDesde.slice(0, 4);
-    let desdeMes = curso.fechaDesde.slice(5, 7);
-    let desdeDia = curso.fechaDesde.slice(8, 10);
-    let hastaAño = curso.fechaHasta.slice(0, 4);
-    let hastaMes = curso.fechaHasta.slice(5, 7);
-    let hastaDia = curso.fechaHasta.slice(8, 10);
-
     cursosTemplate = cursosTemplate.replace('${curso}', curso.nombre);
     cursosTemplate = cursosTemplate.replace('${ide}', curso.ide);
     cursosTemplate = cursosTemplate.replace('${ide}', curso.ide);
+    if (curso.estado == false) {
+      cursosTemplate = cursosTemplate.replace('${estado}', 'Inactivo');
+    } else {
+      cursosTemplate = cursosTemplate.replace('${estado}', 'Activo');
+    }
     if (curso.estado == true) {
       cursosTemplate = cursosTemplate.replace('${checked}', 'checked');
     }
     cursosTemplate = cursosTemplate.replace('${nombre}', curso.nombre);
-    cursosTemplate = cursosTemplate.replace('${desdeDia}', desdeDia);
-    cursosTemplate = cursosTemplate.replace('${desdeMes}', desdeMes);
-    cursosTemplate = cursosTemplate.replace('${desdeAño}', desdeAño);
-    cursosTemplate = cursosTemplate.replace('${hastaDia}', hastaDia);
-    cursosTemplate = cursosTemplate.replace('${hastaMes}', hastaMes);
-    cursosTemplate = cursosTemplate.replace('${hastaAño}', hastaAño);
+    cursosTemplate = cursosTemplate.replace('${desdeDia}', curso.fechaDesde[0]);
+    cursosTemplate = cursosTemplate.replace('${desdeMes}', curso.fechaDesde[1]);
+    cursosTemplate = cursosTemplate.replace('${desdeAño}', curso.fechaDesde[2]);
+    cursosTemplate = cursosTemplate.replace('${hastaDia}', curso.fechaHasta[0]);
+    cursosTemplate = cursosTemplate.replace('${hastaMes}', curso.fechaHasta[1]);
+    cursosTemplate = cursosTemplate.replace('${hastaAño}', curso.fechaHasta[2]);
 
     if (curso.estado == false) {
       cursosTemplate = cursosTemplate.replace('${estado}', 'Inactivo');
@@ -94,19 +92,19 @@ exports.mostrarCurso = async (req, res) => {
 
     const horarios = `<tr>
         <th scope="row">Desde</td>
-        <td>${curso.horarios[0].desdeHora}</td>
-        <td>${curso.horarios[1].desdeHora}</td>
-        <td>${curso.horarios[2].desdeHora}</td>
-        <td>${curso.horarios[3].desdeHora}</td>
-        <td>${curso.horarios[4].desdeHora}</td>
+        <td id="lunes-desde">${curso.horarios[0].desdeHora}</td>
+        <td id="martes-desde">${curso.horarios[1].desdeHora}</td>
+        <td id="miercoles-desde">${curso.horarios[2].desdeHora}</td>
+        <td id="jueves-desde">${curso.horarios[3].desdeHora}</td>
+        <td id="viernes-desde">${curso.horarios[4].desdeHora}</td>
       </tr>
       <tr>
         <th scope="row">Hasta</td>
-        <td>${curso.horarios[0].hastaHora}</td>
-        <td>${curso.horarios[1].hastaHora}</td>
-        <td>${curso.horarios[2].hastaHora}</td>
-        <td>${curso.horarios[3].hastaHora}</td>
-        <td>${curso.horarios[4].hastaHora}</td>
+        <td id="lunes-hasta">${curso.horarios[0].hastaHora}</td>
+        <td id="martes-hasta">${curso.horarios[1].hastaHora}</td>
+        <td id="miercoles-hasta">${curso.horarios[2].hastaHora}</td>
+        <td id="jueves-hasta">${curso.horarios[3].hastaHora}</td>
+        <td id="viernes-hasta">${curso.horarios[4].hastaHora}</td>
       </tr>`;
 
     cursosTemplate = cursosTemplate.replace('${horarios}', horarios);
