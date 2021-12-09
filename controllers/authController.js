@@ -7,7 +7,7 @@ const Usuario = require('../models/usuario');
 const { generarJWT } = require('../helpers/generarJwt');
 const { googleVerify } = require('../helpers/google-verify');
 
-let template = fs.readFileSync('templates/loginGoogle.html', 'utf-8');
+let template = fs.readFileSync('templates/login.html', 'utf-8');
 
 exports.google = async (req, res) => {
   try {

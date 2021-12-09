@@ -26,7 +26,6 @@
           />
           Inicio
         </a>
-        <!-- <a id="btn-inicio" class="navbar-brand text-light" href="/">Inicio</a> -->
         <button
           class="navbar-toggler"
           type="button"
@@ -41,7 +40,6 @@
       </div>
     </nav>
     <!-- CUERPO -->
-
     <section class="container pt-4 mt-4">
       <div class="card text-center mt-4">
         <div class="card-header mb-2">
@@ -141,13 +139,10 @@
               />
             </div>
             <div class="col">
-              <label for="instrCursos">Cursos</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Ingrese los cursos"
-                id="instrCursos"
-              />
+              <label for="cursos">Curso</label>
+              <select class="form-select" aria-label="Cursos" id="instrCursos">
+                ${cursosSelec}
+              </select>
             </div>
           </div>
           <div class="row mb-2">

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/bootstrap.css.map" />
     <link rel="stylesheet" href="css/style.css" />
 
-    <script defer src="js/scriptCur.js"></script>
+    <script defer src="js/scriptAlu.js"></script>
     <title>Alumno #${ide}</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
   </head>
@@ -26,7 +26,6 @@
           />
           Inicio
         </a>
-        <!-- <a id="btn-inicio" class="navbar-brand text-light" href="/">Inicio</a> -->
         <button
           class="navbar-toggler"
           type="button"
@@ -41,11 +40,11 @@
       </div>
     </nav>
     <!-- CUERPO -->
-    <!--  -->
-
     <section class="container pt-4 mt-4">
       <div class="card text-center mt-4">
-        <div class="card-header mb-2"><b>Alumno - ID #${ide}</b></div>
+        <div class="card-header mb-2">
+          <b>Alumno - ID #<span id="ide">${ide}</span></b>
+        </div>
         <img
           src="img/descarga.jpg"
           class="center"
@@ -60,15 +59,131 @@
           alt="instructor"
         />
         <div class="card-body">
-          <h5 class="card-title">${nombres} ${apellidos}</h5>
+          <h5 class="card-title">
+            <span id="nombres">${nombres}</span>
+            <span id="apellidos">${apellidos}</span>
+          </h5>
           <p class="card-text">
-            <b>${documentoTipo}:</b> ${documentoNro}<br />
-            <b>E-Mail:</b> ${email}<br />
-            <b>Domicilio:</b> ${domicilio}<br />
-            <b>Teléfono:</b> ${telefono}
+            <b><span id="docTipo">${documentoTipo}</span>:</b>
+            <span id="docNro">${documentoNro}</span><br />
+            <b>Cursos:</b> <span id="cursos">${cursos}</span><br />
+            <b>E-Mail:</b> <span id="email">${email}</span><br />
+            <b>Domicilio:</b> <span id="domicilio">${domicilio}</span><br />
+            <b>Teléfono:</b> <span id="telefono">${telefono}</span>
           </p>
         </div>
-        <div class="card-footer text-muted"></div>
+      </div>
+      <div class="container-nav p-4">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button
+            type="button"
+            class="btn btn-actualizar btn-primary"
+            id="actAlumno"
+          >
+            Actualizar Alumno
+          </button>
+        </div>
+      </div>
+      <div class="container form cont-formulario-alu mt-2 mb-4 py-2 border">
+        <form class="formulario-alu" method="patch" action="/alumnos">
+          <div class="row pt-2 mb-4">
+            <div class="col">
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="switch"
+                  ${checked}
+                />
+                <label class="form-check-label" for="flexSwitchCheckDefault"
+                  >${estado}</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <label for="aluApellidos">Apellido/s</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ingrese el/los apellido/s"
+                id="aluApellidos"
+              />
+            </div>
+            <div class="col">
+              <label for="aluNombres">Nombre/s</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ingrese el/los nombre/s"
+                id="aluNombres"
+              />
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <label for="documentoTipo">Tipo de Documento</label>
+              <select class="form-control" id="documentoTipo">
+                <option>DNI</option>
+                <option>CI</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="documentoNro">N°</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Ingrese el número del documento"
+                id="documentoNro"
+              />
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <label for="cursos">Curso</label>
+              <select class="form-select" aria-label="Cursos" id="aluCursos">
+                <option value=" " selected></option>
+                ${cursosSelec}
+              </select>
+            </div>
+            <div class="col">
+              <label for="aluEmail">E-Mail</label>
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Ingrese la dirección de e-mail"
+                id="aluEmail"
+              />
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <label for="aluDomicilio">Domicilio</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ingrese el domicilio"
+                id="aluDomicilio"
+              />
+            </div>
+            <div class="col">
+              <label for="aluTelefono">Teléfono</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Ingrese el número de teléfono"
+                id="aluTelefono"
+              />
+            </div>
+          </div>
+          <button type="button" class="btn btn-guardar btn-primary mt-2">
+            Guardar
+          </button>
+          <button type="button" class="btn btn-cancelar btn-danger mt-2 mx-4">
+            Cancelar
+          </button>
+        </form>
       </div>
     </section>
 

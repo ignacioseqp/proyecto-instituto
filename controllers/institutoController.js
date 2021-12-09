@@ -37,6 +37,11 @@ exports.mostrarTodo = async (req, res) => {
         try {
           curso.instructores = await Instructor.find({
             cursos: curso.nombre,
+            estado: true,
+          });
+          curso.alumnos = await Alumno.find({
+            cursos: curso.nombre,
+            estado: true,
           });
           let estado = 'Activo';
           if (curso.estado == false) {
@@ -88,6 +93,7 @@ exports.mostrarTodo = async (req, res) => {
       })
       .join('');
 
+    mainTemplate = mainTemplate.replace('${cursosSelec}', cursosSelec);
     mainTemplate = mainTemplate.replace('${cursosSelec}', cursosSelec);
 
     res.send(mainTemplate);

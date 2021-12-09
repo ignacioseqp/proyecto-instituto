@@ -53,6 +53,21 @@ exports.mostrarCurso = async (req, res) => {
   try {
     let cursosTemplate = template;
 
+    let esteCurso = await Curso.findOne({ ide: req.params.ide });
+
+    let actInstr = await Instructor.find({
+      cursos: esteCurso.nombre,
+      estado: true,
+    });
+    let actAlu = await Alumno.find({
+      cursos: esteCurso.nombre,
+      estado: true,
+    });
+
+    await esteCurso.updateOne({ instructores: actInstr });
+    await esteCurso.updateOne({ alumnos: actAlu });
+    await esteCurso.save();
+
     let curso = await Curso.findOne({ ide: req.params.ide })
       .populate({
         path: 'instructores',

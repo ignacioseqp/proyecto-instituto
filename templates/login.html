@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/bootstrap.css.map" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Document</title>
+    <title>Iniciar Sesión</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
   </head>
   <style>
@@ -157,6 +157,7 @@
           .then((resp) => {
             console.log(resp);
             localStorage.setItem('token', resp.token);
+            window.location.replace('/');
           })
           .catch(console.warn);
       });

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Instructor = require('./../models/instructorModel');
+const Curso = require('./../models/cursoModel');
 
 let template = fs.readFileSync('templates/instructores.html', 'utf-8');
 
@@ -14,7 +15,7 @@ exports.crearInstructor = async (req, res) => {
       apellidos: req.body.apellidos,
       nombres: req.body.nombres,
       profTitulo: req.body.profTitulo,
-      cursos: [],
+      cursos: req.body.cursos,
       email: req.body.email,
       domicilio: req.body.domicilio,
       telefono: req.body.telefono,
@@ -41,6 +42,7 @@ exports.mostrarInstructor = async (req, res) => {
   try {
     let instructoresTemplate = template;
     let instructor = await Instructor.findOne({ ide: req.params.ide });
+    let queryCur = await Curso.find().sort({ ide: 1 });
 
     console.log(instructor);
 
@@ -77,10 +79,14 @@ exports.mostrarInstructor = async (req, res) => {
       '${ide}',
       instructor.ide
     );
-    instructoresTemplate = instructoresTemplate.replace(
-      '${cursos}',
-      instructor.cursos[0]
-    );
+    if (instructor.cursos[0]) {
+      instructoresTemplate = instructoresTemplate.replace(
+        '${cursos}',
+        instructor.cursos[0]
+      );
+    } else {
+      instructoresTemplate = instructoresTemplate.replace('${cursos}', '');
+    }
     instructoresTemplate = instructoresTemplate.replace(
       '${profTitulo}',
       instructor.profTitulo
@@ -96,6 +102,21 @@ exports.mostrarInstructor = async (req, res) => {
     instructoresTemplate = instructoresTemplate.replace(
       '${telefono}',
       instructor.telefono
+    );
+
+    const cursosSelec = queryCur
+      .map((cur) => {
+        if (instructor.cursos[0] == cur.nombre) {
+          return `<option value="${cur.nombre}" selected>${cur.nombre}</option>`;
+        } else {
+          return `<option value="${cur.nombre}">${cur.nombre}</option>`;
+        }
+      })
+      .join('');
+
+    instructoresTemplate = instructoresTemplate.replace(
+      '${cursosSelec}',
+      cursosSelec
     );
 
     res.send(instructoresTemplate);

@@ -56,7 +56,7 @@ const instrTel = document.getElementById('instrTelefono');
 const formAlu = document.querySelector('.formulario-alu');
 const contFormAlu = document.querySelector('.cont-formulario-alu');
 const tituAlu = document.querySelector('.titulo-alumnos');
-
+const instrAlu = document.getElementById('aluCursos');
 const btnOpenAlu = document.getElementById('openAlu');
 //Alumno - Datos personales
 const aluApellidos = document.getElementById('aluApellidos');
@@ -229,6 +229,7 @@ const enviarFormAlu = async function () {
       nombres: aluNombres.value,
       documentoTipo: documentoTipo.value,
       documentoNro: documentoNro.value,
+      cursos: [instrAlu.value],
       email: aluEmail.value,
       domicilio: aluDom.value,
       telefono: aluTel.value,

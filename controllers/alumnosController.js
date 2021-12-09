@@ -9,15 +9,27 @@ let template = fs.readFileSync('templates/alumnos.html', 'utf-8');
 
 exports.crearAlumno = async (req, res) => {
   try {
-    let query = await Alumno.find().sort({ ide: 1 });
-    const nuevoId = query[query.length - 1].ide + 1;
+    console.log('hola');
+    let queryAlumnos = await Alumno.find();
+    let nuevoId;
+    console.log();
+
+    if (queryAlumnos.length < 1) {
+      nuevoId = 1;
+    } else {
+      let query = await Alumno.find().sort({ ide: 1 });
+      nuevoId = query[query.length - 1].ide + 1;
+    }
+    console.log(nuevoId);
 
     const objeto = {
       ide: nuevoId,
+      estado: true,
       apellidos: req.body.apellidos,
       nombres: req.body.nombres,
       documentoTipo: req.body.documentoTipo,
       documentoNro: req.body.documentoNro,
+      cursos: req.body.cursos,
       email: req.body.email,
       domicilio: req.body.domicilio,
       telefono: req.body.telefono,
@@ -44,14 +56,21 @@ exports.mostrarAlumno = async (req, res) => {
   try {
     let alumnosTemplate = template;
     let alumno = await Alumno.findOne({ ide: req.params.ide });
-    let instructor = await Instructor.find();
-    let curso = await Curso.find();
+    let queryCur = await Curso.find().sort({ ide: 1 });
 
     console.log(alumno);
 
     alumnosTemplate = alumnosTemplate.replace('${ide}', alumno.ide);
     alumnosTemplate = alumnosTemplate.replace('${nombres}', alumno.nombres);
     alumnosTemplate = alumnosTemplate.replace('${apellidos}', alumno.apellidos);
+    if (alumno.estado == true) {
+      alumnosTemplate = alumnosTemplate.replace('${checked}', 'checked');
+    }
+    if (alumno.estado) {
+      alumnosTemplate = alumnosTemplate.replace('${estado}', 'Activo');
+    } else {
+      alumnosTemplate = alumnosTemplate.replace('${estado}', 'Inactivo');
+    }
     alumnosTemplate = alumnosTemplate.replace('${ide}', alumno.ide);
     alumnosTemplate = alumnosTemplate.replace(
       '${documentoTipo}',
@@ -61,9 +80,26 @@ exports.mostrarAlumno = async (req, res) => {
       '${documentoNro}',
       alumno.documentoNro
     );
+    if (alumno.cursos[0]) {
+      alumnosTemplate = alumnosTemplate.replace('${cursos}', alumno.cursos[0]);
+    } else {
+      alumnosTemplate = alumnosTemplate.replace('${cursos}', '');
+    }
     alumnosTemplate = alumnosTemplate.replace('${email}', alumno.email);
     alumnosTemplate = alumnosTemplate.replace('${domicilio}', alumno.domicilio);
     alumnosTemplate = alumnosTemplate.replace('${telefono}', alumno.telefono);
+
+    const cursosSelec = queryCur
+      .map((cur) => {
+        if (alumno.cursos[0] == cur.nombre) {
+          return `<option value="${cur.nombre}" selected>${cur.nombre}</option>`;
+        } else {
+          return `<option value="${cur.nombre}">${cur.nombre}</option>`;
+        }
+      })
+      .join('');
+
+    alumnosTemplate = alumnosTemplate.replace('${cursosSelec}', cursosSelec);
 
     res.send(alumnosTemplate);
   } catch (err) {
@@ -76,18 +112,20 @@ exports.mostrarAlumno = async (req, res) => {
 
 exports.actualizarAlumno = async (req, res) => {
   try {
-    const alumno = await Alumno.findByIdAndUpdate(req.params.id, req.body, {
+    const alumno = await Alumno.updateOne({ ide: req.params.ide }, req.body, {
       new: true,
     });
 
+    console.log(alumno);
+
     res.json({
-      status: 'success',
-      data: alumno,
+      status: 'success - actualizado',
+      data: { alumno },
     });
   } catch (err) {
     res.json({
       status: 'fail',
-      data: 'Datos incorrectos!',
+      message: err.message,
     });
   }
 };

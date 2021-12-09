@@ -8,7 +8,6 @@ const {
   googleSignin,
   google,
 } = require('../controllers/authController');
-// const {  } = require('../controllers/googleSignin');
 
 const router = express.Router();
 

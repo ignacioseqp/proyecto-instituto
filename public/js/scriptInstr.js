@@ -1,7 +1,7 @@
 'use strict';
 
 //INSTRUCTORES
-const formInstr = document.querySelector('.formulario-cursos');
+const formInstr = document.querySelector('.formulario-instr');
 const contFormInstr = document.querySelector('.cont-formulario-instructor');
 const btnGuardar = document.querySelector('.btn-guardar');
 const btnCancelar = document.querySelector('.btn-cancelar');
@@ -28,7 +28,7 @@ const domicilioForm = document.getElementById('instrDomicilio');
 const telefonoForm = document.getElementById('instrTelefono');
 const emailForm = document.getElementById('instrEmail');
 
-let estadoInstr = true;
+let estadoInstr;
 
 nombresForm.value = nombresInstr;
 apellidosForm.value = apellidosInstr;
@@ -38,13 +38,12 @@ domicilioForm.value = domicilioInstr;
 telefonoForm.value = telefonoInstr;
 emailForm.value = emailInstr;
 
-console.log(estadoInstr);
-
 checkEstado.addEventListener('click', function () {
-  estadoInstr = !estadoInstr;
-  if (estadoInstr == true) {
+  if (checkLabel.textContent == 'Inactivo') {
+    estadoInstr = true;
     checkLabel.textContent = 'Activo';
   } else {
+    estadoInstr = false;
     checkLabel.textContent = 'Inactivo';
   }
 });
