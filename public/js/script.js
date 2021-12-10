@@ -5,6 +5,9 @@ const btnInicio = document.getElementById('btn-inicio');
 const btnCursos = document.getElementById('btn-cursos');
 const btnInstructores = document.getElementById('btn-instructores');
 const btnAlumnos = document.getElementById('btn-alumnos');
+const btnLogout = document.getElementById('btn-logout');
+const btnLogin = document.getElementById('btn-login');
+var myModal = new bootstrap.Modal(document.getElementById('myModal'));
 
 //CURSOS
 const formCurso = document.querySelector('.formulario-cursos');
@@ -67,6 +70,29 @@ const documentoNro = document.getElementById('documentoNro');
 const aluEmail = document.getElementById('aluEmail');
 const aluDom = document.getElementById('aluDomicilio');
 const aluTel = document.getElementById('aluTelefono');
+
+if (
+  localStorage.getItem('token') !== null &&
+  localStorage.getItem('token') !== 'undefined'
+) {
+  btnLogin.classList.add('d-none');
+  btnLogout.classList.remove('d-none');
+} else if (
+  localStorage.getItem('token') == null ||
+  localStorage.getItem('token') == 'undefined'
+) {
+  btnLogin.classList.remove('d-none');
+  btnLogout.classList.add('d-none');
+  if (localStorage.getItem('token') == 'undefined') {
+    myModal.show();
+  }
+  localStorage.clear();
+}
+
+btnLogout.onclick = async () => {
+  localStorage.clear();
+  location.reload();
+};
 
 btnInicio.addEventListener('click', (evt) => {
   evt.preventDefault();
@@ -212,6 +238,7 @@ const enviarFormInstr = async function () {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
+        'x-token': `${localStorage.getItem('token')}`,
       },
       body: JSON.stringify(data),
     });
@@ -239,6 +266,7 @@ const enviarFormAlu = async function () {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
+        'x-token': `${localStorage.getItem('token')}`,
       },
       body: JSON.stringify(data),
     });

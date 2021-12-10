@@ -123,6 +123,7 @@
             console.log(resp);
             console.log(`Google token: ${response.credential}`);
             localStorage.setItem('token', resp.token);
+            window.location.replace('/');
           })
           .catch(console.warn);
       }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap.css.map" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Acceso Denegado</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+  </head>
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-primary">
+      <div class="container-fluid">
+        <a id="btn-inicio" class="navbar-brand text-light" href="/">
+          <img
+            src="img/descarga.jpg"
+            width="30"
+            height="30"
+            class="d-inline-block align-top"
+            alt=""
+          />
+          Inicio
+        </a>
+        <!-- <a id="btn-inicio" class="navbar-brand text-light" href="/">Inicio</a> -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+    <section class="container m-4">
+      <h1 class="display-3 mb-4">Error ${error}</h1>
+      <h2 class="display-6">${mensaje}</h2>
+    </section>
+  </body>
+</html>

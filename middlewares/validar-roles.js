@@ -1,5 +1,4 @@
 const { request, response } = require('express');
-// const { validarJWT } = require('./validar-jwt');
 
 const esAdminRole = (req = request, res = response, next) => {
   if (!req.usuario) {

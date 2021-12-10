@@ -15,8 +15,12 @@ routerCursos.post(
   '/',
   [
     validarJWT,
-    tieneRole('ADMIN_ROLE', 'USER_ROLE'),
+    esAdminRole,
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
+    check('fechaDesde', 'La fecha de inicio es obligatoria').not().isEmpty(),
+    check('fechaHasta', 'La fecha de finalización es obligatoria')
+      .not()
+      .isEmpty(),
     validarCampos,
   ],
   controllerCurso.crearCurso
@@ -37,17 +41,6 @@ routerCursos.patch(
     validarCampos,
   ],
   controllerCurso.actualizarCurso
-);
-
-routerCursos.delete(
-  '/:ide',
-  [
-    validarJWT,
-    esAdminRole,
-    check('estado', 'El estado es obligatorio').not().isEmpty(),
-    validarCampos,
-  ],
-  controllerCurso.desactivarCurso
 );
 
 module.exports = routerCursos;
