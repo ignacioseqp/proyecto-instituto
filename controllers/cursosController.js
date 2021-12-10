@@ -129,8 +129,8 @@ exports.mostrarCurso = async (req, res) => {
         return `<tr>
         <td><a href="/instructores/${ins.ide}"
         style="text-decoration: none">${ins.ide}</a></td>
-        <td>${ins.nombres}</td>
         <td>${ins.apellidos}</td>
+        <td>${ins.nombres}</td>
       </tr>`;
       })
       .join('');
@@ -144,8 +144,8 @@ exports.mostrarCurso = async (req, res) => {
         return `<tr>
         <td><a href="/alumnos/${alu.ide}"
         style="text-decoration: none">${alu.ide}</a></td>
-        <td>${alu.nombres}</td>
         <td>${alu.apellidos}</td>
+        <td>${alu.nombres}</td>
       </tr>`;
       })
       .join('');
@@ -205,26 +205,3 @@ exports.desactivarCurso = async (req, res) => {
     });
   }
 };
-
-//POPULATE
-
-// exports.mostrarCurso = async (req, res) => {
-//   try {
-//     let curso = await Curso.findOne({ ide: req.params.ide })
-//       .populate('instructores')
-//       .populate('alumnos', ['ide', 'nombres', 'apellidos']);
-
-//     curso.alumnos.forEach((alu) => {
-//       console.log(alu.nombres);
-//     });
-
-//     res.json({
-//       curso,
-//     });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json({
-//       msg: err,
-//     });
-//   }
-// }

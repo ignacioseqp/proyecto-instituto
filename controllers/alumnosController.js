@@ -1,7 +1,5 @@
 const Alumno = require('./../models/alumnoModel');
-const Instructor = require('./../models/instructorModel');
 const Curso = require('./../models/cursoModel');
-const apiOpciones = require('../apiOpciones');
 
 const fs = require('fs');
 
